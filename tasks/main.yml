@@ -1,0 +1,20 @@
+---
+- include: install.yml
+  tags: [mysql, mysql-install]
+
+- name: Check if MySQL packages were installed.
+  set_fact:
+    mysql_install_packages: "{{ (rh_mysql_install_packages is defined and rh_mysql_install_packages.changed) or (deb_mysql_install_packages is defined and deb_mysql_install_packages.changed) }}"
+  tags: [mysql, mysql-install]
+
+- include: configure.yml
+  tags: [mysql, mysql-configure]
+
+- include: secure-installation.yml
+  tags: [mysql, mysql-secure-installation]
+
+- include: databases.yml
+  tags: [mysql, mysql-databases]
+
+- include: users.yml
+  tags: [mysql, mysql-users]

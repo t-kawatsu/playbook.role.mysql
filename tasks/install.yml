@@ -1,0 +1,15 @@
+---
+- name: MySQL | Add MySQL repository
+  yum:
+    name: "{{ yum_repo.url }}"
+    state: present
+
+- name: MySQL | Disable repository
+  shell: $SHELL -lc "yum-config-manager --disable {{ yum_repo.disable }}"
+
+- name: MySQL | Install packages
+  yum:
+    name: "{{ item }}"
+    state: present
+    enablerepo: "{{ yum_repo.enable }}"
+  with_items: mysql_packages

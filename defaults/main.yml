@@ -1,0 +1,19 @@
+---
+mysql_version: 5.6
+
+mysql_user_home : /root
+mysql_root_username: root
+mysql_root_password: abcdefgi
+
+mysql_root_password_update: yes
+
+mysql_packages: ["mysql-community-server", "mysql-community-client", "mysql-community-devel", "MySQL-python"]
+
+mysql_databases: []
+
+mysql_users: []
+
+yum_repo:
+  url: "http://dev.mysql.com/get/mysql-community-release-el{{ ansible_distribution_major_version }}-5.noarch.rpm"
+  disable: "mysql5*-community"
+  enable: "mysql56-community" 

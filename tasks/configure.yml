@@ -1,0 +1,13 @@
+---
+- name: MySQL | Update configuration
+  template:
+    src: "my.cnf-{{ mysql_version }}.j2"
+    dest: "/etc/my.cnf"
+    owner: root
+    group: root
+    mode: 0640
+    backup: yes
+
+- name: MySQL | Ensure MySQL is started and enabled on boot.
+  service: "name=mysqld state=started enabled=yes"
+  register: mysql_service_configuration
