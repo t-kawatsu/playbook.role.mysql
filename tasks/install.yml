@@ -13,3 +13,4 @@
     state: present
     enablerepo: "{{ yum_repo.enable }}"
   with_items: mysql_packages
+  register: rh_mysql_install_packages
